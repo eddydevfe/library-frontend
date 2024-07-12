@@ -1,9 +1,8 @@
+import Login from './pages/Login'
+
 const App = () => {
-  console.log('hello')
   return (
-    <>
-      <p>Hello...</p>
-    </>
+    <Login />
   )
 }
 
