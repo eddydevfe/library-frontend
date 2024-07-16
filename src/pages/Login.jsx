@@ -1,47 +1,36 @@
-import { useField } from '../hooks/index'
-
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { login } from '../reducers/userReducer'
-
+import { setCredentials } from '../features/auth/authSlice'
+import { useLoginMutation } from '../features/auth/authApiSlice'
+import UserForm from '../components/UserForm'
 
 const Login = () => {
-  const username = useField('text', 'username')
-  const password = useField('password', 'password')
+  const navigate = useNavigate()
+  const [login, { isLoading }] = useLoginMutation()
   const dispatch = useDispatch()
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  const handleSubmit = async ({username, password}) => {
     try {
-        dispatch(login({username: username.content.value, password: password.content.value}))
-        username.reset()
-        password.reset()
+      const userData = await login({ username, password }).unwrap()
+      dispatch(setCredentials({ ...userData, username }))
+      navigate('/home')
     } catch (error) {
-        console.error('error logging in:', error.message)
+      if (!error?.originalStatus) {
+        alert('No Server Response.')
+      } else if (error.originalStatus === 400) {
+        alert('Missing Username or Password.')
+      } else if (error.originalStatus === 401) {
+        alert('Unauthorized.')
+      } else {
+        alert('Login Failed.')
+      }
     }
   }
 
-  return (
-    <main>
-      <h1>Personal Library</h1>
-      <h2>Welcome back</h2>
-
-      <section>
-        <span>Login</span>
-        <form onSubmit={handleLogin}>
-          <div>
-            <label htmlFor='username'>Username:</label>
-            <input {...username.content} />
-          </div>
-
-          <div>
-            <label htmlFor='password'>Password:</label>
-            <input {...password.content} />
-          </div>
-          <button type='submit'>Log in</button>
-        </form> 
-      </section>
-    </main>
+  return isLoading ? (
+    <h1>Loading...</h1>
+  ) : (
+    <UserForm onSubmit={handleSubmit} title='Login' buttonText='Sign in' />
   )
 }
-
 export default Login

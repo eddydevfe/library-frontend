@@ -1,17 +1,25 @@
-import { Route, Link } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-// import checkUserSession from './reducers/userReducer'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
 import Login from './pages/Login'
+import RequireAuth from './features/auth/RequireAuth'
+import Home from './pages/Home'
+import LandingPage from './pages/LandingPage'
 
 const App = () => {
-  const dispatch = useDispatch()
+  return (
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        {/* public routes */}
+        <Route index element={<LandingPage />} />
+        <Route path='login' element={<Login />} />
 
-  // useEffect(() => {
-  //   dispatch(checkUserSession())
-  // }, [dispatch])
-
-  return <Login />
+        {/* protected routes */}
+        <Route element={<RequireAuth />}>
+          <Route path='home' element={<Home />} />
+        </Route>
+      </Route>
+    </Routes>
+  )
 }
 
 export default App
