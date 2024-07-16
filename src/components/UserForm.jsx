@@ -18,7 +18,7 @@ const UserForm = ({ onSubmit, title, buttonText }) => {
   }
 
   return (
-    <section>
+    <>
       <h1>{title}</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor='username'>Username:</label>
@@ -42,7 +42,7 @@ const UserForm = ({ onSubmit, title, buttonText }) => {
         />
         <button>{buttonText}</button>
       </form>
-    </section>
+    </>
   )
 }
 

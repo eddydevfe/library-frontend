@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../features/auth/authSlice'
 import { useLoginMutation } from '../features/auth/authApiSlice'
@@ -30,7 +30,11 @@ const Login = () => {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <UserForm onSubmit={handleSubmit} title='Login' buttonText='Sign in' />
+    <section>
+      <h1>Welcome back</h1>
+      <UserForm onSubmit={handleSubmit} title='Login' buttonText='Sign in' />
+      <p>Need an account? <Link to='/register'>Sign Up</Link></p>
+    </section>
   )
 }
 export default Login
