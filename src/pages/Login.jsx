@@ -18,7 +18,7 @@ const Login = () => {
       if (!error?.originalStatus) {
         alert('No Server Response.')
       } else if (error.originalStatus === 400) {
-        alert('Missing Username or Password.')
+        alert( error?.data?.error || 'Missing Username or Password.')
       } else if (error.originalStatus === 401) {
         alert('Unauthorized.')
       } else {

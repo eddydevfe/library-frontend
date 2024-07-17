@@ -4,8 +4,8 @@ const LandingPage = () => {
   return (
     <section>
       <div>LandingPage</div>
-      <Link to='/login'>Log In</Link>
-      <Link to='/register'>Sign Up</Link>
+      <Link to='/login'>Log in</Link>
+      <Link to='/register'>Sign up</Link>
     </section>
   )
 }

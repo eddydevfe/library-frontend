@@ -19,9 +19,7 @@ const Register = () => {
       dispatch(setCredentials({ ...userData, username }))
       navigate('/home')
     } catch (error) {
-      if (error.status === 400) {
-        alert(error.data.error)
-      } else if (error.status === 409) {
+      if (error.status === 400 || error.status === 409) {
         alert(error.data.error)
       } else {
         alert('Registration Failed.')
@@ -36,7 +34,7 @@ const Register = () => {
   ) : (
     <section>
       <h1>Create your account</h1>
-      <UserForm onSubmit={handleSubmit} title='Register' buttonText='Sign Up' />
+      <UserForm onSubmit={handleSubmit} title='Register' buttonText='Sign up' />
       <p>Already have an account? <Link to='/login'>Log In</Link></p>
     </section>
   )
