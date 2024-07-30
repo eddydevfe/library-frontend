@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  &:focus {
+    outline: 3px solid $light-blue;
+  }
+}
+
+html {
+  font-size: 62.5%; // This might be a bad idea.
+  // scroll-behavior: smooth;
+}
+
+body {
+  background-color: $bg-gray;
+  font-family: $titles-font;
+  position: relative;
+}
+
+// Scroll bar
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $blue #ffffff;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: $blue;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: $blue;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: $blue;
+}

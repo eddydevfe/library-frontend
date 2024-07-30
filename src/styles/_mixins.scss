@@ -1,0 +1,29 @@
+@mixin button-styles {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: $text-white;
+  padding: 15px 3rem;
+  border-radius: 5px;
+  border: none;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+
+@mixin blue-button {
+  background-color: $blue;
+  box-shadow: 0 10px 15px rgba($light-blue, 0.36);
+
+  &:hover {
+    box-shadow: 0 10px 15px rgba($light-blue, 0.6);
+  }
+}
+
+@mixin black-button {
+  background-color: $btn-black;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.188);
+
+  &:hover {
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.3);
+  }
+}

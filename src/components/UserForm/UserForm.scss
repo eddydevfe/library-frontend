@@ -1,0 +1,25 @@
+@import '../../styles/styles.scss';
+
+h2 {
+  color: $blue;
+  font-size: $fs-300;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: start;
+  margin: 4rem 0;
+
+  label {
+    font-size: $fs-200;
+    color: $text-gray;
+  }
+
+  button {
+    margin-top: 1rem;
+    @include button-styles;
+    @include blue-button;
+  }
+}

@@ -1,0 +1,30 @@
+@import '../../styles/styles.scss';
+
+.advt-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  height: 400px;
+  margin: 4rem 0;
+  padding: 4rem;
+  background: $bg-white;
+  border-radius: 10px;
+  box-shadow: $dark-box-shadow;
+
+  &:first-child {
+    padding: 4rem;
+  }
+}
+
+.advt-item:nth-child(2) {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 900px) {
+  .advt-item,
+  .advt-item:nth-child(2) {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+}

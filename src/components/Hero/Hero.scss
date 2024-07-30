@@ -1,0 +1,70 @@
+@import '../../styles/styles.scss';
+
+// TODO: The hero take the size of the viewport, if is too large the hero will also be too large.
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background-color: $bg-gray;
+
+  & > * {
+    flex: 1;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-family: $titles-font;
+    font-size: clamp($fs-500, 2vw + 1rem, $fs-600);
+    color: $text-black;
+
+    span {
+      color: $blue;
+      display: block;
+      font-size: clamp($fs-600, 5vw + 1rem, $fs-700);
+    }
+  }
+
+  p {
+    margin: 1.25rem 0;
+  }
+
+  @media (max-width: 900px) {
+    text-align: center;
+
+    .buttons {
+      justify-content: center;
+
+      & > * {
+        flex-grow: 1;
+        max-width: 200px;
+      }
+    }
+
+    .reading-svg {
+      display: none;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  .sign-up,
+  .login {
+    @include button-styles;
+  }
+
+  .sign-up {
+    @include blue-button;
+  }
+
+  .login {
+    @include black-button;
+  }
+}
