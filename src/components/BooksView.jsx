@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux'
 const BooksView = () => {
   const books = useSelector((state) => state.books)
 
-  console.log(books)
-
   if (!books) {
     return <p>No books available</p>
   }

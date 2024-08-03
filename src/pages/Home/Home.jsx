@@ -16,9 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     if (fetchedBooks) {
-      console.log('fetchedBooks:', fetchedBooks)
       dispatch(setBooks(fetchedBooks))
-      console.log('booksInStore after fetch:', booksInStore)
     }
   }, [fetchedBooks, dispatch])
 
