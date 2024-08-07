@@ -3,6 +3,7 @@ import { setCredentials, logOut } from './authSlice'
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
+    // TODO: The setCredentials for the login maybe could be moved here.
     login: builder.mutation({
       query: credentials => ({
         url: '/login',
@@ -13,7 +14,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     sendLogout: builder.mutation({
       query: () => ({
         url: '/logout',
-        method: 'POST',
+        method: 'GET',
       }),
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {

@@ -1,0 +1,32 @@
+@import '../../styles/styles.scss';
+
+nav {
+  background-color: $bg-white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  border-bottom: $border;
+
+  h1 {
+    font-size: $fs-400;
+    color: $blue;
+    user-select: none;
+  }
+
+  button {
+    @include button-styles;
+    @include blue-button;
+    box-shadow: none;
+  }
+
+  // Hamburger menu.
+  > :first-child {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $bg-gray;
+    }
+  }
+}

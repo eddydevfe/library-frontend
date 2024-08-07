@@ -14,7 +14,10 @@ const Register = () => {
 
   const handleSubmit = async ({ username, password }) => {
     try {
-      const registrationResult = await registerUser({ username, password }).unwrap()
+      const registrationResult = await registerUser({
+        username,
+        password,
+      }).unwrap()
       if (registrationResult) alert(registrationResult.success)
       const userData = await login({ username, password }).unwrap()
       dispatch(setCredentials({ ...userData, username }))
@@ -37,8 +40,15 @@ const Register = () => {
     <section className='.container'>
       <div className='auth-container'>
         <div className='auth-form'>
+          <Link to='/'>
+            <span>←</span>
+          </Link>
           <h1>Welcome</h1>
-          <UserForm onSubmit={handleSubmit} title='Register' buttonText='Sign up' />
+          <UserForm
+            onSubmit={handleSubmit}
+            title='Register'
+            buttonText='Sign up'
+          />
           <p>
             Already have an account? <Link to='/login'>Log in</Link>
           </p>

@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [login, { isLoading }] = useLoginMutation()
-  const [setPersist] = usePersist()
+  const [persist, setPersist] = usePersist() // Without persist an error is thrown.
 
   /*
   Login persistence is on by default but this could be changed to a Trust This Device 
@@ -19,7 +19,8 @@ const Login = () => {
   */
   useEffect(() => {
     setPersist(true)
-  }, [setPersist])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // TODO: Ensure error handling is working as intended both here and in the Register.jsx
   // TODO: Extract error handler into it's own helper function.
@@ -41,13 +42,16 @@ const Login = () => {
     }
   }
 
-  // TODO: Add a better loading indicator.
+  // TODO: Add a better loading indicator/spinner.
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
     <section className='container'>
       <div className='auth-container'>
         <div className='auth-form'>
+          <Link to='/'>
+            <span>←</span>
+          </Link>
           <h1>Welcome back</h1>
           <UserForm
             onSubmit={handleSubmit}
