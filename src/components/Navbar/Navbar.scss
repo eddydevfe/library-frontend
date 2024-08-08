@@ -24,9 +24,15 @@ nav {
     height: 50px;
     width: 50px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
 
     &:hover {
       background-color: $bg-gray;
+    }
+
+    &:active {
+      background-color: darken($bg-gray, 10%);
+      transform: scale(0.95);
     }
   }
 }

@@ -4,7 +4,14 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: min-content 1fr;
+}
+
+.sidebar-open {
   grid-template-columns: 300px 1fr;
+}
+
+.sidebar-closed {
+  grid-template-columns: 0 1fr;
 }
 
 .navbar {
@@ -13,4 +20,8 @@
 
 .sidebar {
   grid-area: 2 / 1 / -1 / 2;
+}
+
+.books-view {
+  grid-area: 2 / 2 / 2 / -1;
 }

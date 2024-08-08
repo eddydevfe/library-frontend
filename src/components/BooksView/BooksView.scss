@@ -1,0 +1,43 @@
+@import '../../styles/styles.scss';
+
+.books-view {
+  padding: 4rem 2rem;
+  font-size: $fs-100;
+}
+
+.book {
+  display: flex;
+  background-color: $bg-white;
+  box-shadow: $dark-box-shadow;
+  border-radius: 5px;
+  margin-bottom: 4rem;
+}
+
+.book-cover {
+  width: 250px;
+  aspect-ratio: 2 / 3;
+  background-color: lighten($blue, 10%); // Temporary.
+  border-radius: 5px;
+  flex-shrink: 0;
+  height: auto;
+}
+
+th {
+  text-align: left;
+  width: 180px; // Not sure if hardcoding pixels here is a good idea.
+  padding-left: 2rem;
+}
+
+td {
+  padding-left: 30px;
+  text-align: left;
+}
+
+tr:nth-child(odd) {
+  background-color: $bg-gray;
+}
+
+.book-details {
+  width: 100%;
+  padding: 4rem;
+}

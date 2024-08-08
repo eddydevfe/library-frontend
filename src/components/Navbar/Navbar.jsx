@@ -6,10 +6,10 @@ import { setSidebar } from '../../features/ui/uiSlice'
 import Menu from '../../assets/images/burger-simple-svgrepo-com.svg'
 import './Navbar.scss'
 
-const Navbar = ({ className }) => {
+const Navbar = ({ className, setIsManuallyToggled, isViewportTooSmall, isManuallyToggled }) => {
   const [sendLogout, { isLoading, isError, error }] = useSendLogoutMutation()
   const navigate = useNavigate()
-  const isSidebarOpen = useSelector(state => state.ui.isSidebarOpen)
+  const isSidebarOpen = useSelector((state) => state.ui.isSidebarOpen)
   const dispatch = useDispatch()
 
   const handleLogout = async () => {
@@ -20,9 +20,22 @@ const Navbar = ({ className }) => {
       console.error('Failed to log out:', err)
     }
   }
-
+  
   const handleSidebar = () => {
-    dispatch(setSidebar(!isSidebarOpen))
+    if (!isViewportTooSmall) {
+      dispatch(setSidebar(!isSidebarOpen))
+      setIsManuallyToggled(true) 
+    } else if (isViewportTooSmall && !isSidebarOpen) {
+      dispatch(setSidebar(true))
+      setIsManuallyToggled(true)
+    } else if (isViewportTooSmall && isSidebarOpen) {
+      dispatch(setSidebar(false))
+      setIsManuallyToggled(true)
+    }
+  
+    if (window.innerWidth >= 900 && isManuallyToggled) {
+      setIsManuallyToggled(false) 
+    }
   }
 
   return (
@@ -39,6 +52,8 @@ const Navbar = ({ className }) => {
 
 Navbar.propTypes = {
   className: PropTypes.string,
+  setIsManuallyToggled: PropTypes.func.isRequired,
+  isViewportTooSmall: PropTypes.bool.isRequired,
 }
 
 export default Navbar

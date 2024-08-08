@@ -1,21 +1,21 @@
 import './Home.scss'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useGetBooksQuery } from '../../features/books/booksApiSlice'
 import { setBooks } from '../../features/books/booksSlice'
-import { useDispatch } from 'react-redux'
+import { setSidebar } from '../../features/ui/uiSlice'
 
 import Navbar from '../../components/Navbar/Navbar'
-import BooksView from '../../components/BooksView'
+import BooksView from '../../components/BooksView/BooksView'
 import Sidebar from '../../components/Sidebar/Sidebar'
 
 const Home = () => {
   const dispatch = useDispatch()
   const isSidebarOpen = useSelector((state) => state.ui.isSidebarOpen)
   const booksInStore = useSelector((state) => state.books)
+  const [isManuallyToggled, setIsManuallyToggled] = useState(false)
+  const [isViewportTooSmall, setIsViewportTooSmall] = useState(false)
 
-  // This took longer than I will ever admit.
-  // Fetch books data, skip fetching if books are already in the store.
   const { data: fetchedBooks, isLoading } = useGetBooksQuery(undefined, {
     skip: booksInStore.length > 0,
   })
@@ -26,12 +26,42 @@ const Home = () => {
     }
   }, [fetchedBooks, dispatch])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 900) {
+        if (isSidebarOpen && !isManuallyToggled) {
+          dispatch(setSidebar(false))
+        }
+        setIsViewportTooSmall(true)
+      } else {
+        if (!isSidebarOpen && !isManuallyToggled) {
+          dispatch(setSidebar(true))
+        }
+        setIsViewportTooSmall(false)
+      }
+    }
+  
+    handleResize()
+  
+    window.addEventListener('resize', handleResize)
+  
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [dispatch, isSidebarOpen, isManuallyToggled])
+  
+
   if (isLoading) return <p>Loading your books...</p>
 
   return (
-    <div className='layout'>
-      <Navbar className='navbar' />
-      {/* <BooksView /> */}
+    <div className={`layout ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+      <Navbar 
+        className='navbar'
+        setIsManuallyToggled={setIsManuallyToggled}
+        isViewportTooSmall={isViewportTooSmall}
+        isManuallyToggled={isManuallyToggled}
+      />
+      <BooksView className='books-view'/>
       {isSidebarOpen && <Sidebar className='sidebar' />}
     </div>
   )

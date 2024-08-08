@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   isSidebarOpen: true,
+  bookViewMode: 'ALL'
 }
 
 const uiSlice = createSlice({
@@ -14,9 +15,12 @@ const uiSlice = createSlice({
       } else {
         state.isSidebarOpen = !state.isSidebarOpen
       }
+    },
+    setBookViewMode(state, action) {
+      state.bookViewMode === action.payload
     }
   }
 })
 
-export const { setSidebar } = uiSlice.actions
+export const { setSidebar, setBookViewMode } = uiSlice.actions
 export default uiSlice.reducer
