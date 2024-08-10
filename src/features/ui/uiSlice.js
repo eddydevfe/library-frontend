@@ -17,7 +17,7 @@ const uiSlice = createSlice({
       }
     },
     setBookViewMode(state, action) {
-      state.bookViewMode === action.payload
+      state.bookViewMode = action.payload
     }
   }
 })

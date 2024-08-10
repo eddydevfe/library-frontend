@@ -5,20 +5,60 @@ aside {
   padding: 4rem 2rem;
   border-right: $border;
 
-  li {
-    list-style-type: none;
-    font-size: $fs-200;
-    cursor: pointer;
-    font-family: $text-font;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 600;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px; // Match the space given by the grid layout
+  height: 100vh;
+  z-index: 0; // Hide top portion behind the navbar
+  margin-top: 6rem; // Push actual items down
 
-    &:hover {
-      color: $blue;
-      background-color: $bg-gray;
+  display: flex;
+  flex-direction: column;
 
-      box-shadow: inset 4px 0 0px -2px lighten($blue, 10%);
+  button:last-child {
+    display: none;
+    margin-top: auto;
+    margin-bottom: 5rem;
+    width: min-content;
+    text-wrap: nowrap;
+  }
+}
+
+li {
+  list-style-type: none;
+  font-size: $fs-200;
+  cursor: pointer;
+  font-family: $text-font;
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-weight: 600;
+  user-select: none;
+  transition: background-color 0.3s, transform 0.1s;
+
+  &:hover,
+  &.active {
+    background-color: $bg-gray;
+    box-shadow: inset 4px 0 0px -2px lighten($blue, 10%);
+  }
+
+  &.active {
+    color: $blue;
+  }
+
+  &:active {
+    background-color: darken($bg-gray, 10%);
+    transform: scale(0.99);
+  }
+}
+
+@media (max-width: 700px) {
+  aside {
+    width: 100%;
+
+    button:last-child {
+      display: block;
     }
   }
 }

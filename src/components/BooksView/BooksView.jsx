@@ -4,7 +4,7 @@ import './BooksView.scss'
 
 const BooksView = ({ className }) => {
   const books = useSelector((state) => state.books)
-  const activeView = useSelector((state) => state.ui.booksViewMode)
+  const activeView = useSelector((state) => state.ui.bookViewMode)
 
 
   // TODO: Add some style to these errors so they look nicer.

@@ -1,0 +1,7 @@
+@import '../../styles/styles.scss';
+
+button {
+  @include button-styles;
+  @include blue-button;
+  box-shadow: none;
+}

@@ -26,9 +26,10 @@ const Home = () => {
     }
   }, [fetchedBooks, dispatch])
 
+  // Sidebar auto hide
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 900) {
+      if (window.innerWidth < 1000) {
         if (isSidebarOpen && !isManuallyToggled) {
           dispatch(setSidebar(false))
         }
