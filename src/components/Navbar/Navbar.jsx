@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSidebar } from '../../features/ui/uiSlice'
 import Menu from '../../assets/images/burger-simple-svgrepo-com.svg'
 import LogoutButton from '../Shared/LogoutButton'
+import Modal from '../Modal'
 import './Navbar.scss'
 
 const Navbar = ({
@@ -36,6 +37,7 @@ const Navbar = ({
     <nav className={className}>
       <Menu onClick={handleSidebar} />
       <h1>Alexandria</h1>
+      <Modal />
       <LogoutButton />
     </nav>
   )

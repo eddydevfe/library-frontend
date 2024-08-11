@@ -1,0 +1,83 @@
+@import '../styles/styles.scss';
+
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background: rgba(49, 49, 49, 0.8);
+  border: none;
+
+  outline: none;
+
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal::backdrop {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  padding: 2rem 4rem;
+  background: $bg-white;
+  border-radius: 3px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: left;
+}
+
+.modal form div:not(:last-child) {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+
+  label {
+    margin-right: 2rem;
+  }
+
+  input {
+    width: 330px;
+  }
+}
+
+// Form buttons
+.modal form div:last-child {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  width: 100%;
+  margin-top: 3rem;
+
+  button,
+  input {
+    @include button-styles;
+    flex: 1;
+  }
+
+  input {
+    @include black-button;
+  }
+
+  button {
+    margin: 0;
+    @include blue-button;
+  }
+}
+
+.open-modal-btn {
+  @include black-button;
+  box-shadow: none;
+}
