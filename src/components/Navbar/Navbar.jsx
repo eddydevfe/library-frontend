@@ -37,8 +37,10 @@ const Navbar = ({
     <nav className={className}>
       <Menu onClick={handleSidebar} />
       <h1>Alexandria</h1>
-      <Modal />
-      <LogoutButton />
+      <div className='nav-btns'>
+        <Modal />
+        <LogoutButton />
+      </div>
     </nav>
   )
 }

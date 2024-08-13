@@ -36,9 +36,14 @@ nav {
   }
 }
 
-@media (max-width: 700px) {
+.nav-btns {
+  display: flex;
+  gap: 0.8rem;
+}
+
+@media (max-width: 900px) {
   // Logout button.
-  nav > button {
+  nav div > button {
     display: none;
   }
 

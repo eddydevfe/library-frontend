@@ -1,42 +1,84 @@
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useSelector, useDispatch } from 'react-redux'
+import { useDeleteBookMutation } from '../../features/books/booksApiSlice'
+import { setBooks } from '../../features/books/booksSlice'
+import { getCover } from '../../services/bookDataService'
 import './BooksView.scss'
 
 const BooksView = ({ className }) => {
   const books = useSelector((state) => state.books)
   const activeView = useSelector((state) => state.ui.bookViewMode)
+  const dispatch = useDispatch()
+  const [deleteBook, { isLoading, isError, error }] = useDeleteBookMutation()
+  const [coverUrls, setCoverUrls] = useState({})
 
+  useEffect(() => {
+    const fetchCovers = async () => {
+      const urls = {}
+      for (const book of books) {
+        try {
+          const url = await getCover(book.title)
+          urls[book.id] = url
+        } catch (error) {
+          console.error('Error fetching cover for book:', book.title, error)
+        }
+      }
+      setCoverUrls(urls)
+    }
 
-  // TODO: Add some style to these errors so they look nicer.
-  if (!books) {
-    return <p>No books available</p>
-  }
+    if (books.length > 0) {
+      fetchCovers()
+    }
+  }, [books])
 
-  if (!Array.isArray(books)) {
-    return <p>Invalid books data</p>
+  if (!Array.isArray(books) || books.length === 0) {
+    return <p>{!books ? 'No books available' : 'Invalid books data'}</p>
   }
 
   const filterBooks = (books, mode) => {
-    switch (mode) {
-      case 'COMPLETED':
-        return books.filter((book) => book.pagesRead === book.pageCount)
-      case 'READING':
-        return books.filter((book) => book.pagesRead < book.pageCount)
-      case 'REVIEWED':
-        return books.filter((book) => book.review && book.review.length > 1)
-      case 'ALL':
-      default:
-        return books
+    let tabTitle = 'All books'
+    const filteredBooks = books.filter((book) => {
+      switch (mode) {
+        case 'COMPLETED':
+          tabTitle = 'Completed books'
+          return book.pagesRead === book.pageCount
+        case 'READING':
+          tabTitle = 'Currently reading'
+          return book.pagesRead < book.pageCount
+        case 'ALL':
+        default:
+          return true
+      }
+    })
+
+    return { tabTitle, filteredBooks }
+  }
+
+  const { tabTitle: activeTab, filteredBooks } = filterBooks(books, activeView)
+
+  const handleDelete = async (bookId) => {
+    try {
+      await deleteBook(bookId).unwrap()
+      const updatedBooks = books.filter((book) => book.id !== bookId)
+      dispatch(setBooks(updatedBooks))
+    } catch (err) {
+      console.error('Failed to delete the book:', err)
     }
   }
 
-  const filteredBooks = filterBooks(books, activeView)
-
   return (
     <div className={className}>
+      <div className='active-tab'>{activeTab}</div>
+
       {filteredBooks.map((book) => (
         <div className='book' key={book.id}>
-          <div className='book-cover'></div>
+          <img
+            className='book-cover'
+            src={coverUrls[book.id] || 'path/to/default-image.jpg'}
+            alt={`${book.title} cover`}
+          />
+
           <table className='book-details'>
             <tbody>
               <tr>
@@ -67,12 +109,16 @@ const BooksView = ({ className }) => {
                 <th>Score:</th>
                 <td>{book.score}</td>
               </tr>
-              <tr>
-                <th>Review:</th>
-                <td>{book.review}</td>
-              </tr>
             </tbody>
           </table>
+
+          <button
+            className='delete-book-btn'
+            onClick={() => handleDelete(book.id)}
+            disabled={isLoading}
+          >
+            Delete
+          </button>
         </div>
       ))}
     </div>

@@ -1,25 +1,26 @@
 @import '../styles/styles.scss';
 
-body.active-modal {
-  overflow-y: hidden;
-}
-
 .modal {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  // background: rgba(49, 49, 49, 0.8);
+  background: rgba(49, 49, 49, 0.8);
   border: none;
-
-  outline: none;
-
-  width: 100vw;
-  height: 100vh;
 
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  h2 {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 3rem;
+  }
+}
+
+.modal[open] {
+  display: flex;
 }
 
 .modal::backdrop {
@@ -27,7 +28,7 @@ body.active-modal {
 }
 
 .modal-content {
-  padding: 2rem 4rem;
+  padding: 0 4rem;
   background: $bg-white;
   border-radius: 3px;
   max-width: 600px;
@@ -80,4 +81,11 @@ body.active-modal {
 .open-modal-btn {
   @include black-button;
   box-shadow: none;
+}
+
+@media (max-width: 500px) {
+  .modal form div:not(:last-child) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

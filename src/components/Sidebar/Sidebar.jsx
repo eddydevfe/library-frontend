@@ -4,6 +4,7 @@ import { setBookViewMode } from '../../features/ui/uiSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { setSidebar } from '../../features/ui/uiSlice'
 import LogoutButton from '../Shared/LogoutButton'
+import Modal from '../Modal'
 
 const Sidebar = ({ className }) => {
   const activeView = useSelector((state) => state.ui.bookViewMode)
@@ -35,14 +36,11 @@ const Sidebar = ({ className }) => {
         >
           Reading
         </li>
-        <li
-          className={activeView === 'REVIEWED' ? 'active' : ''}
-          onClick={() => handleViewChange('REVIEWED')}
-        >
-          Reviewed
-        </li>
       </ul>
-      <LogoutButton />
+      <div className='sidebar-btns'>
+        <Modal />
+        <LogoutButton />
+      </div>
     </aside>
   )
 }
