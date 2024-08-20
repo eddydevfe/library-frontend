@@ -9,7 +9,7 @@ const Footer = () => {
           <div className='footer-content'>
             <ul className='footer-item'>
               <li>Contact</li>
-              <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+              <li>Have questions or feedback? Reach out to us anytime.</li>
 
               <li>
                 <a href='mailto:dev.eduardo.fe@gmail.com' className='email'>
@@ -24,7 +24,7 @@ const Footer = () => {
                 <a href='#'>Frequently Asked Questions</a>
               </li>
               <li>
-                <a href='#'>Lorem Ipsum</a>
+                <a href='#'>Our Mission</a>
               </li>
               <li>
                 <a href='#'>Blog</a>

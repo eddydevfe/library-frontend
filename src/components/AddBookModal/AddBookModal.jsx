@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAddBookMutation } from '../features/books/booksApiSlice'
-import { setBooks } from '../features/books/booksSlice'
-import './Modal.scss'
+import { useAddBookMutation } from '../../features/books/booksApiSlice'
+import { setBooks } from '../../features/books/booksSlice'
+import './AddBookModal.scss'
 
-const Modal = () => {
+const AddBookModal = () => {
   const dialogRef = useRef(null)
   const [addBook] = useAddBookMutation()
   const books = useSelector((state) => state.books)
@@ -125,4 +125,4 @@ const Modal = () => {
   )
 }
 
-export default Modal
+export default AddBookModal

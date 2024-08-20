@@ -5,6 +5,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 import { useLoginMutation } from '../../features/auth/authApiSlice'
 import { useRegisterMutation } from '../../features/register/registerApiSlice'
 import UserForm from '../../components/UserForm/UserForm'
+import LoadingIndicator from '../../components/LoadingIndicator'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -33,14 +34,13 @@ const Register = () => {
 
   const isLoading = isRegisterLoading || isLoginLoading
 
-  // TODO: Add a better loading indicator.
   return isLoading ? (
-    <h1>Loading...</h1>
+    <LoadingIndicator />
   ) : (
     <section className='.container'>
       <div className='auth-container'>
         <div className='auth-form'>
-          <Link to='/'>
+          <Link to='/' >
             <span>←</span>
           </Link>
           <h1>Welcome</h1>

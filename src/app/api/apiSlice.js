@@ -6,7 +6,8 @@ const baseQuery = fetchBaseQuery({
   In production the frontend will be built and hosted along with the backend
   so this should be a relative path to the backend itself. That is "/api".
   */
-  baseUrl: 'http://localhost:5173/api', // TODO: Change this when in production.
+  // baseUrl: 'http://localhost:5173/api', // TODO: Change this when in production.
+  baseUrl: '/api', 
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token

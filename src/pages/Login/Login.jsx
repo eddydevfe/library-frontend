@@ -6,6 +6,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 import { useLoginMutation } from '../../features/auth/authApiSlice'
 import UserForm from '../../components/UserForm/UserForm'
 import usePersist from '../../hooks/usePersist'
+import LoadingIndicator from '../../components/LoadingIndicator'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -42,9 +43,8 @@ const Login = () => {
     }
   }
 
-  // TODO: Add a better loading indicator/spinner.
   return isLoading ? (
-    <h1>Loading...</h1>
+    <LoadingIndicator />
   ) : (
     <section className='container'>
       <div className='auth-container'>

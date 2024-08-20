@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useGetBooksQuery } from '../../features/books/booksApiSlice'
 import { setBooks } from '../../features/books/booksSlice'
 import { setSidebar } from '../../features/ui/uiSlice'
+import LoadingIndicator from '../../components/LoadingIndicator'
 
 import Navbar from '../../components/Navbar/Navbar'
 import BooksView from '../../components/BooksView/BooksView'
@@ -52,7 +53,8 @@ const Home = () => {
   }, [dispatch, isSidebarOpen, isManuallyToggled])
   
 
-  if (isLoading) return <p>Loading your books...</p>
+  // if (isLoading) return <p>Loading your books...</p>
+  if (isLoading) return <LoadingIndicator text='Loading your books...'/>
 
   return (
     <div className={`layout ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>

@@ -13,8 +13,9 @@ const Advantages = () => {
             <div>
               <h2>Convenient</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea iusto suscipit
-                incidunt consequuntur assumenda quidem porro facere veniam.
+                Easily log and organize your entire book collection. With
+                Alexandria, keeping track of what you've read and what you plan
+                to read is effortless.
               </p>
             </div>
           </div>
@@ -24,9 +25,9 @@ const Advantages = () => {
             <div>
               <h2>Simple</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi recusandae,
-                esse pariatur totam iusto, debitis sit eos excepturi ratione placeat
-                dolorem perspiciatis maiores nemo culpa.
+                Alexandria is designed to be user-friendly, with a clean and
+                intuitive interface that makes logging books a breeze. No
+                unnecessary features, just what you need.
               </p>
             </div>
           </div>
@@ -36,8 +37,9 @@ const Advantages = () => {
             <div>
               <h2>Efficient</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quisquam,
-                repellendus sed facere in ex vitae ratione consectetur iusto debitis.
+                Spend less time managing your books and more time reading them.
+                Alexandria helps you quickly find and update your book logs, so
+                you can focus on what matters most.
               </p>
             </div>
           </div>
